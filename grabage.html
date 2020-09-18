@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Catalogue</title>
+    </head>
+    <body>
+        <h1>Catalogue</h1>
+        <table id = 'books' cellpadding = '10px' style = 'text-align: left;'>
+            <thead>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Price</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+
+       
+        <script>
+            let xmlContent = '';
+            let tableBooks = document.getElementById('books');
+            fetch('info.xml').then((Response) => {
+                Response.text().then((xml) => {
+                    xmlContent = xml;
+                    let parser = new DOMParser();
+                    let xmlDOM = parser.parseFromString(xmlContent,'application/xml');
+                    let books = xmlDOM.querySelectorAll('book');
+
+                    books.forEach(bookXmlNode => {
+                        let row = document.createElement('tr');
+                        //title
+                        let td = document.createElement('td');
+                        td.innerText = bookXmlNode.children[0].innerHTML;
+                        row.appendChild(td);
+                        //author
+                        let td = document.createElement('td');
+                        td.innerText = bookXmlNode.children[1].innerHTML;
+                        row.appendChild(td);
+                        //year
+                        let td = document.createElement('td');
+                        td.innerText = bookXmlNode.children[2].innerHTML;
+                        row.appendChild(td);
+                        //price
+                        let td = document.createElement('td');
+                        td.innerText = bookXmlNode.children[3].innerHTML;
+                        row.appendChild(td);
+
+                        tableBooks.children[1].appendChild(row);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

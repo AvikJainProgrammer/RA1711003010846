@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <title>Login Page</title>
+    <script>
+      function validate(){
+         var x = document.forms["myform"]["uname"].value
+         var y = document.forms["myform"]["pword"].value
+         var names = ['avik','arpit','chetan']
+         var passwords = ['apple','banana','orange']
+         if(x == ""){
+            alert("input something")
+            return false
+         }
+         for (i = 0;i<names.length;i++){
+            if(x == names[i] && y == passwords[i]){
+               return true
+            }
+         }
+         return false
+         
+      }
+    </script>
+ </head>
+<body style="background-color:orange;">
+   <img src="data:image/png;base64,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">
+ <h1 align="center">Login</h1>
+ <hr width =65%">
+  <form name = "myform" action ="page.html" onsubmit="return validate()" method="post">
+     <p align="center">Name<input type ="text" maxlength="32" size="16" name = "uname">
+     <p align="center">Password<input type ="password" maxlength="32" size="16" name = "pword">
+      <p align="center"><input type="submit" value="Submit">
+   </body>
+</html>
